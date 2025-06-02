@@ -1,0 +1,33 @@
+[데이터베이스: S3 스토리지]
+[테이블: driving_data, 운전 데이터, 센서 데이터, 텔레매틱스, 드라이빙 로그]
+
+테이블명: driving_data
+목적: 실시간 운전 중 수집되는 상세 센서 데이터 저장
+주요 기능: 운전 패턴 분석, 안전 점수 계산, 사고 감지
+
+센서 데이터:
+- velocity: 속도 (DECIMAL(10,6))
+- accelero_x/y/z: 가속도계 3축 데이터 (DECIMAL(12,8))
+- gyroscop_x/y/z: 자이로스코프 3축 데이터 (DECIMAL(12,8))
+- gnss_x/y: GPS 좌표 (DECIMAL(15,10))
+
+차량 제어 데이터:
+- throttle: 가속 페달 (DECIMAL(5,4))
+- steer: 핸들 조향각 (DECIMAL(8,6))
+- brake: 브레이크 페달 (DECIMAL(5,4))
+
+안전 데이터:
+- collision: 충돌 감지 정보 (JSON)
+- invasion: 차선 침범 정보 (JSON)
+- front_distance: 전방 거리 (DECIMAL(8,4))
+- front_object: 전방 객체 유형 (VARCHAR(100))
+
+기본 정보:
+- id: 레코드 ID (BIGINT, 기본키)
+- time: 측정 시간 (DATETIME(6))
+- driveid: 드라이브 세션 ID (INT)
+- userid: 사용자 ID (INT)
+
+관계: event 테이블과 driveid로 연관, users 테이블과 userid로 연관
+주요 쿼리: 드라이브별 상세 데이터, 급가속/급감속 분석, 안전 점수 계산, 사고 위험 감지
+활용: 운전 패턴 AI 분석, 보험료 산정, 안전 운전 교육

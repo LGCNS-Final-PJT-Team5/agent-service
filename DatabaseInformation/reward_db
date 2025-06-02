@@ -1,0 +1,39 @@
+[데이터베이스: reward_db]
+[테이블: reward, 리워드, 포인트, 적립금, 보상]
+
+테이블명: reward
+목적: 사용자의 리워드 적립/사용 내역을 관리
+주요 기능: 포인트 적립, 사용, 취소 기록, 잔액 스냅샷 관리
+
+컬럼 구조:
+- id: 리워드 거래 고유 ID (BIGINT, 기본키)
+- amount: 거래 금액 (BIGINT, 적립/차감 포인트)
+- balance_snapshot: 거래 시점 잔액 (BIGINT)
+- type: 거래 유형 (ENUM: EARNED, USED, CANCELED)
+- description: 거래 설명 (VARCHAR(255))
+- drive_id: 관련 드라이브 ID (BIGINT, 운전으로 적립 시)
+- user_id: 사용자 ID (BIGINT, users 테이블 참조)
+- reward_balance_id: 잔액 테이블 참조 (BIGINT)
+- created_at, updated_at: 생성/수정 시간
+- version: 낙관적 락을 위한 버전
+
+관계: users, reward_balance 테이블과 연관
+주요 쿼리: 사용자별 적립 내역, 드라이브별 보상, 월별 포인트 통계
+
+---
+
+[테이블: reward_balance, 리워드 잔액, 포인트 잔액, 현재 포인트]
+
+테이블명: reward_balance  
+목적: 사용자별 현재 리워드 잔액을 관리
+주요 기능: 실시간 포인트 잔액 조회, 사용자당 하나의 레코드 유지
+
+컬럼 구조:
+- id: 잔액 레코드 고유 ID (BIGINT, 기본키)
+- balance: 현재 잔액 (BIGINT)
+- user_id: 사용자 ID (BIGINT, UNIQUE, users 테이블 참조)
+- created_at, updated_at: 생성/수정 시간
+- version: 동시성 제어용 버전
+
+관계: users 테이블과 1:1, reward 테이블과 1:N
+주요 쿼리: 사용자 포인트 조회, 잔액 업데이트, 포인트 랭킹

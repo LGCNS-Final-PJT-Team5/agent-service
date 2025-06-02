@@ -1,0 +1,17 @@
+[데이터베이스: event_db]
+[테이블: event, 이벤트, 드라이빙 이벤트, 운전 기록]
+
+테이블명: event
+목적: 사용자의 운전 중 발생하는 각종 이벤트를 기록
+주요 기능: 운전 이벤트 추적, GPS 위치 기록, 드라이브별 이벤트 분류
+
+컬럼 구조:
+- event_id: 이벤트 고유 ID (BIGINT, 기본키, 자동증가)
+- drive_id: 드라이브 세션 식별자 (VARCHAR(255))
+- event_time: 이벤트 발생 시간 (DATETIME(6), 마이크로초 포함)
+- gnss_x, gnss_y: GPS 좌표 (DOUBLE, 위도/경도)
+- type: 이벤트 유형 (VARCHAR(255), 급가속/급감속/급회전 등)
+- user_id: 사용자 ID (INT, users 테이블 참조)
+
+관계: users 테이블과 N:1, driving_data 테이블과 drive_id로 연관
+주요 쿼리: 사용자별 이벤트 조회, 드라이브별 이벤트 분석, 위치별 이벤트 통계

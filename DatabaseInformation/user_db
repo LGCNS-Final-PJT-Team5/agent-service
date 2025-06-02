@@ -1,0 +1,43 @@
+[데이터베이스: user_db]
+[테이블: users, 사용자, 회원, 계정, 멤버]
+
+테이블명: users
+목적: 사용자 기본 정보 및 프로필 관리
+주요 기능: 회원가입, 로그인, 프로필 관리, 운전 경력 추적
+
+컬럼 구조:
+- user_id: 사용자 고유 ID (BIGINT, 기본키)
+- name: 사용자 이름 (VARCHAR(255), 필수)
+- nickname: 닉네임 (VARCHAR(255))
+- email: 이메일 (VARCHAR(255), 유니크)
+- phone: 전화번호 (VARCHAR(255))
+- social_id, social_type: 소셜 로그인 정보
+- driving_experience: 운전 경력 (BIGINT, 년수)
+- license_date: 면허 취득일 (DATETIME(6))
+- birthdate: 생년월일, gender: 성별
+- is_active: 활성 상태 (BIT(1))
+- alarm: 알림 설정 (BIT(1))
+- reward: 리워드 포인트 (BIGINT)
+- interest: 관심사 (VARCHAR(255))
+- create_date_time, update_date_time: 생성/수정 시간
+
+관계: cars, event, reward 테이블들과 1:N
+주요 쿼리: 이메일 로그인, 사용자 프로필 조회, 활성 사용자 목록
+
+---
+
+[테이블: cars, 차량, 자동차, 등록 차량]
+
+테이블명: cars
+목적: 사용자별 등록 차량 정보 관리
+주요 기능: 차량 등록, 활성화/비활성화, 차량번호 관리
+
+컬럼 구조:
+- car_id: 차량 고유 ID (BIGINT, 기본키)
+- number: 차량번호 (VARCHAR(255), 필수)
+- user_id: 소유자 ID (BIGINT, users 테이블 참조)
+- active: 활성 상태 (BIT(1))
+- create_date_time: 등록 시간
+
+관계: users 테이블과 N:1
+주요 쿼리: 사용자별 차량 목록, 활성 차량 조회, 차량번호 검색

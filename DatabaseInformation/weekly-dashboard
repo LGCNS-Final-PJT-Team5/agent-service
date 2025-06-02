@@ -1,0 +1,34 @@
+[데이터베이스: DynamoDB]
+[테이블: weekly-dashboard, 주간 대시보드, 주간 리포트, 운전 성과, 피드백]
+
+테이블명: weekly-dashboard
+목적: 사용자별 주간 운전 성과 및 피드백 데이터 관리
+주요 기능: 주간 운전 분석, 점수 산정, AI 피드백 생성, 성과 리포트
+
+컬럼 구조:
+- dashboardId: 대시보드 고유 식별자 (String, 파티션 키)
+- userId: 사용자 ID (Integer, users 테이블 참조)
+- userType: 사용자 유형 (String, 일반/프리미엄/기업 등)
+- createdAt: 생성 시간 (String, ISO 8601 형식)
+- driveCount: 주간 운전 횟수 (Integer)
+- scores: 운전 점수 데이터 (String, JSON 형태로 저장)
+- totalFeedback: 종합 피드백 (String, 주간 운전 종합 평가)
+- detailedFeedback: 상세 피드백 (String, 구체적인 개선점 및 분석)
+
+데이터 특징:
+- NoSQL 구조로 유연한 스키마
+- 주간 단위로 집계된 데이터
+- JSON 형태의 scores 필드에 다양한 점수 정보 포함
+- AI 생성 피드백 텍스트 저장
+
+관계: users 테이블과 userId로 연관, event/driving_data 테이블의 집계 결과
+주요 쿼리: 사용자별 주간 성과 조회, 기간별 점수 추이, 피드백 히스토리, 사용자 유형별 통계
+
+활용 사례:
+- 주간 운전 리포트 생성
+- 운전 습관 개선 제안
+- 리워드 포인트 계산 기준
+- 사용자별 맞춤 코칭
+- 장기 트렌드 분석
+
+검색 키워드: [주간분석, 운전점수, 피드백, 성과리포트, 사용자통계, 운전습관, 점수산정, AI분석]

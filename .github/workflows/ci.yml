@@ -39,7 +39,7 @@ jobs:
       - name: Build and push Docker images for all services
         run: |
           echo "Building image for agent-service"
-          docker build -t agent-service:${{ env.IMAGE_TAG }} -f ./modive/Dockerfile .
+          docker build -t agent-service:${{ env.IMAGE_TAG }} -f ./modive/Dockerfile ./modive
           docker tag agent-service:${{ env.IMAGE_TAG }} ${{ env.REPOSITORY_URL }}:${{ env.IMAGE_TAG }}
           docker push ${{ env.REPOSITORY_URL }}:${{ env.IMAGE_TAG }}
 

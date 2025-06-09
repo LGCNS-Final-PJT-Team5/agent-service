@@ -1,5 +1,5 @@
 [데이터베이스: DynamoDB]
-[테이블: weekly-dashboard, 주간 대시보드, 주간 리포트, 운전 성과, 피드백]
+[테이블: weekly-dashboard]
 
 테이블명: weekly-dashboard
 목적: 사용자별 주간 운전 성과 및 피드백 데이터 관리

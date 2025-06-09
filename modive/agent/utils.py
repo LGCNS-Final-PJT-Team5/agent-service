@@ -54,13 +54,17 @@ def create_session(userId):
     )
     return res['sessionId']
 
+custom_agent = os.environ.get('CUSTOM_AGENT')
+custom_agent_id = os.environ.get('CUSTOM_AGENT_ID')
+custom_agent_alias_id = os.environ.get('CUSTOM_AGENT_ALIAS')
+
 def invoke_agent_custom_report(prompt, session_id=None):
     if not session_id:
         session_id = create_session("custom_report_session")
 
     res = bedrock_agent_runtime.invoke_agent(
-        agentId=agent_id,
-        agentAliasId=agent_alias_id,
+        agentId=custom_agent_id,
+        agentAliasId=custom_agent_alias_id,
         sessionId=session_id,
         inputText=prompt
     )
@@ -69,8 +73,4 @@ def invoke_agent_custom_report(prompt, session_id=None):
         chunk = event["chunk"]
         completion += chunk["bytes"].decode()
 
-    response = {
-        "answer": completion,
-        "session_id": session_id
-    }
-    return response
+    return completion, session_id

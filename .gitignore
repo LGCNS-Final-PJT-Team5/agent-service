@@ -1,1 +1,6 @@
 modive/.env
+.DS_Store
+modive/.idea/workspace.xml
+modive/agent/__pycache__/urls.cpython-38.pyc
+modive/agent/__pycache__/utils.cpython-38.pyc
+modive/agent/__pycache__/views.cpython-38.pyc

@@ -1,6 +1,7 @@
 import boto3
 from botocore.config import Config
 import os
+import json
 
 from botocore.exceptions import EventStreamError
 
@@ -97,3 +98,9 @@ def invoke_agent_custom_report(prompt, session_id=None):
         print(f"에러 코드: {e.response.get('Error', {}).get('Code')}")
         print(f"에러 메시지: {e.response.get('Error', {}).get('Message')}")
         return "error", session_id
+
+def user_type_information(type):
+    path = os.path.join("agent/type", type) + ".json"
+    with open(path, 'r', encoding='utf-8') as file:
+        data = json.load(file)
+        return data

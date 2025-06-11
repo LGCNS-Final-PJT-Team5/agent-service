@@ -2,7 +2,7 @@ from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
-from agent.utils import invoke_agent_weekly_feedback, invoke_agent_custom_report, create_session
+from agent.utils import invoke_agent_weekly_feedback, invoke_agent_custom_report, create_session, user_type_information
 
 import json
 
@@ -10,16 +10,21 @@ class GenerateWeeklyFeedback(APIView):
     def post(self, request):
 
         data = request.data
+        type_info = user_type_information(data.get('userType'))
 
         propmt = f'''"userId": "{data.get('userId')}",
         "nickname": "{data.get('nickname')}",
         "userType": "{data.get('userType')}",
+        "userTypeDescription": "{type_info.get('summary')}",
+        "userTypePersona": "{type_info.get('persona')}",
+        "userTypeGoal: {type_info.get('goal')}",
         "scores": "{data.get('scores')}"
-        위 정보를 바탕으로 이번 주 주행 리포트 피드백을 생성한다. DynamoDB에서 과거의 주행 데이터를 가져와 비교에 사용한다.'''
+        위 정보를 바탕으로 이번 주 주행 리포트 피드백을 생성한다. userType을 잘 반영한 피드백을 생성하는것이 가장 중요하다. userTypeDescription은 타입에 대한 정보, userTypePersona는 에이전트가 피드백을 생성할 때 반영해야하는 정보, userTypeGoal은 이 타입의 사용자가 가야하는 목표다. DynamoDB에서 과거의 주행 데이터를 가져와 비교에 사용한다. JSON 형식 이외에 다른 출력은 하지 않는다.'''
 
+        print(propmt)
         agent_response = invoke_agent_weekly_feedback(propmt)
+        print(agent_response)
         response = json.loads(agent_response)
-        response['answer_type'] = 'chat'
 
         return Response({'code':status.HTTP_200_OK, 'message':"OK", 'data':response})
 
@@ -32,7 +37,7 @@ class GenerateCustomReport(APIView):
         위 내용에 대한 에이전트 응답을 생성한다. 대시보드 생성이 가능하면 대시보드 생성을 우선으로 진행한다. 생성이 불가능할 시 대화를 진행한다.
         component props를 생성할 때는 지식기반을 참고하여 명확한 구조로 생성한다.
         이모지 문자를 포함하지 않는다.
-        Json 형식 외에 다른 형식으로 반환하지 않는다. 
+        JSON 형식 이외에 다른 출력은 하지 않는다.
         """
 
         agent_response, session_id = invoke_agent_custom_report(prompt, data.get('session_id'))

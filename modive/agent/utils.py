@@ -73,7 +73,7 @@ def create_session(userId):
 
 custom_agent = os.environ.get('CUSTOM_AGENT')
 custom_agent_id = os.environ.get('CUSTOM_AGENT_ID')
-custom_agent_alias_id = os.environ.get('CUSTOM_AGENT_ALIAS')
+custom_agent_alias_id = "QJKBVVIEQD"
 
 def invoke_agent_custom_report(prompt, session_id=None):
     try:

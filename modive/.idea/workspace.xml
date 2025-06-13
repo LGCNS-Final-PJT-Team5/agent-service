@@ -5,11 +5,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9680d511-039a-433c-a627-d2be8a5405a1" name="변경" comment="">
-      <change beforePath="$PROJECT_DIR$/../DatabaseInformation/drive_data" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../DatabaseInformation/event_db" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../DatabaseInformation/reward_db" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../DatabaseInformation/user_db" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../DatabaseInformation/weekly-dashboard" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/agent/utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/agent/utils.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/agent/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/agent/views.py" afterDir="false" />
@@ -146,7 +141,7 @@
       <workItem from="1749011616700" duration="696000" />
       <workItem from="1749012708011" duration="6622000" />
       <workItem from="1749122063784" duration="69794000" />
-      <workItem from="1749709336260" duration="7685000" />
+      <workItem from="1749709336260" duration="9084000" />
     </task>
     <servers />
   </component>

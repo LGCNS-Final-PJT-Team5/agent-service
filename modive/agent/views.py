@@ -38,7 +38,7 @@ class GenerateCustomReport(APIView):
         component props를 생성할 때는 지식기반을 참고하여 명확한 구조로 생성한다. 
         component props를 생성할 때 DB에 없는 값 임의 생성하지 않고 DB 조회 결과를 바탕으로 같은 변수명을 사용해 생성한다.
         데이터베이스와 쿼리에 대한 정보가 필요할 시 벡터 데이터베이스를 참고한다.
-        사용자가 닉네임이나 이름으로 입력 시 RDS의 user_db의 users테이블에서 해당 유저의 user_id를 찾아 그 값을 사용한다.
+        닉네임이나 이름을 포함해 입력 시 RDS의 user_db의 users테이블에서 해당 유저의 user_id를 찾아 그 값을 사용한다.
         S3에는 userId로 저장되있으니 userId="RDS에서 가져온 user_id" 로 쿼리를 생성해야한다..
         이모지 문자를 포함하지 않는다.
         JSON 형식 이외에 다른 출력은 하지 않는다.

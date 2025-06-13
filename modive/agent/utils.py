@@ -97,7 +97,7 @@ def invoke_agent_custom_report(prompt, session_id=None):
         print(f"에러 세부사항: {e}")
         print(f"에러 코드: {e.response.get('Error', {}).get('Code')}")
         print(f"에러 메시지: {e.response.get('Error', {}).get('Message')}")
-        return "error", session_id
+        return "Agent 호출에 실패했습니다. 다시 시도해주세요.", session_id
 
 def user_type_information(type):
     path = os.path.join("agent/type", type) + ".json"

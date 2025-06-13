@@ -26,7 +26,7 @@
 - id: 레코드 ID (BIGINT, 기본키)
 - time: 측정 시간 (DATETIME(6))
 - driveid: 드라이브 세션 ID (INT)
-- userid: 사용자 ID (INT)
+- userid: 사용자 ID (String)
 
 관계: event 테이블과 driveid로 연관, users 테이블과 userid로 연관
 주요 쿼리: 드라이브별 상세 데이터, 급가속/급감속 분석, 안전 점수 계산, 사고 위험 감지
